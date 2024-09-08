@@ -1,4 +1,5 @@
 FILE=main.tex
+BOOKFILE=booklet.tex
 DVIFILE=main.dvi
 PSFILE=main.ps
 PSBOOKFILE=main_book.ps

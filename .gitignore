@@ -11,3 +11,5 @@ main.pdf
 
 # nix
 result
+.direnv
+.envrc

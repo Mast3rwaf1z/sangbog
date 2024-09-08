@@ -13,23 +13,27 @@
             name = "F-klubbens sangbog booklet";
             src = ./.;
             nativeBuildInputs = deps;
+            buildPhase = ''
+                ${pkgs.gnumake}/bin/make booklet
+            '';
             installPhase = ''
                 mkdir -p $out/{bin,share}
-                ${pkgs.gnumake}/bin/make booklet
                 mv main_book.pdf $out/share
-                echo "${pkgs.xdg-utils}/bin/xdg-open $out/share/main_book.pdf" > $out/bin/${builtins.replaceStrings [" "] ["-"] name}
+                printf "#!${pkgs.bash}/bin/bash\n${pkgs.xdg-utils}/bin/xdg-open $out/share/main_book.pdf" > $out/bin/${builtins.replaceStrings [" "] ["-"] name}
                 chmod +x $out/bin/${builtins.replaceStrings [" "] ["-"] name}
             '';
         };
-        pdf = pkgs.stdenv.mkDerivation rec{
+        pdf = pkgs.stdenv.mkDerivation rec {
             name = "F-klubbens sangbog continuous";
             src = ./.;
             nativeBuildInputs = deps;
+            buildPhase = ''
+                ${pkgs.gnumake}/bin/make pdf
+            '';
             installPhase = ''
                 mkdir -p $out/{bin,share}
-                ${pkgs.gnumake}/bin/make pdf
                 mv main.pdf $out/share
-                echo "${pkgs.xdg-utils}/bin/xdg-open $out/share/main.pdf" > $out/bin/${builtins.replaceStrings [" "] ["-"] name}
+                printf "#!${pkgs.bash}/bin/bash\n${pkgs.xdg-utils}/bin/xdg-open $out/share/main.pdf" > $out/bin/${builtins.replaceStrings [" "] ["-"] name}
                 chmod +x $out/bin/${builtins.replaceStrings [" "] ["-"] name}
             '';
 
