@@ -7,5 +7,7 @@ main.dvi
 main.ilg
 main.pdf
 
+*.pdf
+
 # nix
 result
